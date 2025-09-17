@@ -312,9 +312,10 @@
             color: #000;
         }
 
-        /* Photo Gallery */
+        /* Photo Gallery - Enhanced for Swipe */
         .photo-gallery {
             position: relative;
+            user-select: none;
         }
 
         .photo-container {
@@ -323,6 +324,11 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+            cursor: grab;
+        }
+
+        .photo-container:active {
+            cursor: grabbing;
         }
 
         .photo-slide {
@@ -336,7 +342,7 @@
             background-position: center;
             background-color: #1a1a1a;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease, transform 0.3s ease;
         }
 
         .photo-slide.active {
@@ -361,6 +367,39 @@
 
         .photo-dot.active {
             background: #00ff88;
+        }
+
+        /* Navigation arrows */
+        .photo-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 136, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .photo-nav-arrow:hover {
+            background: rgba(0, 255, 136, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .photo-nav-arrow.prev {
+            left: 10px;
+        }
+
+        .photo-nav-arrow.next {
+            right: 10px;
         }
 
         /* Summer Project Specific */
@@ -481,6 +520,12 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .photo-nav-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -492,7 +537,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#summer-project">Winter Project</a></li>
+                <li><a href="#summer-project">LAMARK&CO App</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -560,6 +605,8 @@
                     
                     <div class="photo-gallery">
                         <div class="photo-container">
+                            <button class="photo-nav-arrow prev">‹</button>
+                            <button class="photo-nav-arrow next">›</button>
                             <div class="photo-slide active" style="background-image: url('screenshots/project1-port-scanner/help.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project1-port-scanner/scan atttempt.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project1-port-scanner/source code.png')"></div>
@@ -612,6 +659,8 @@
                     
                     <div class="photo-gallery">
                         <div class="photo-container">
+                            <button class="photo-nav-arrow prev">‹</button>
+                            <button class="photo-nav-arrow next">›</button>
                             <div class="photo-slide active" style="background-image: url('screenshots/project2-password-analyzer/code.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project2-password-analyzer/gui.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project2-password-analyzer/weak pass.png')"></div>
@@ -665,6 +714,8 @@
                     
                     <div class="photo-gallery">
                         <div class="photo-container">
+                            <button class="photo-nav-arrow prev">‹</button>
+                            <button class="photo-nav-arrow next">›</button>
                             <div class="photo-slide active" style="background-image: url('screenshots/project3-log-analysis/ML.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project3-log-analysis/Read Me.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project3-log-analysis/file structure.png')"></div>
@@ -722,6 +773,8 @@
                     
                     <div class="photo-gallery">
                         <div class="photo-container">
+                            <button class="photo-nav-arrow prev">‹</button>
+                            <button class="photo-nav-arrow next">›</button>
                             <div class="photo-slide active" style="background-image: url('screenshots/project4-encrypted-vault/help.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project4-encrypted-vault/demo.png')"></div>
                             <div class="photo-slide" style="background-image: url('screenshots/project4-encrypted-vault/gui.png')"></div>
@@ -741,52 +794,73 @@
         </div>
     </section>
 
-    <!-- Summer Project Section -->
+    <!-- LAMARK&CO App Section -->
     <section id="summer-project" class="project-section summer-project">
         <div class="project-container">
             <div class="project-showcase">
                 <div class="project-info">
-                    <h2>Winter 2025 Cybersecurity Learning Project</h2>
+                    <h2>LAMARK&CO. DROPSHIPPING INTELLIGENCE MATRIX</h2>
                     <div class="project-description">
-                        Comprehensive learning initiative where I dedicated time to building foundational cybersecurity skills through hands-on projects, online courses, and practical exercises. This self-directed learning experience helped me understand real-world security challenges and solutions.
+                        <strong>Real-Time Market Analysis & Automation Platform</strong><br><br>
+                        A comprehensive dropshipping intelligence platform developed in 2025 (Summer 2024 project) that provides real-time market analysis, product research automation, and business intelligence for e-commerce entrepreneurs. The platform evolved from a desktop application to a full-stack web application with advanced security features.
                     </div>
                     
                     <div class="challenge-section">
-                        <div class="challenge-title">Learning Challenge:</div>
-                        <div class="challenge-text">Balancing theoretical knowledge with practical application while managing multiple learning resources and staying current with evolving cybersecurity threats and technologies.</div>
+                        <div class="challenge-title">Development Challenge:</div>
+                        <div class="challenge-text">Creating a scalable platform that could handle real-time data processing, secure user authentication, and provide actionable business intelligence while transitioning from desktop to web architecture.</div>
                     </div>
                     
                     <div class="challenge-section">
-                        <div class="challenge-title">What I Accomplished:</div>
-                        <div class="challenge-text">Completed multiple cybersecurity courses, built several security tools, practiced ethical hacking techniques, and developed a deeper understanding of enterprise security frameworks and compliance requirements.</div>
+                        <div class="challenge-title">Technical Evolution:</div>
+                        <div class="challenge-text">Successfully migrated from a desktop application to a full-stack web platform with backend server architecture, implementing robust security measures including encryption and secure authentication systems.</div>
                     </div>
 
                     <div class="development-timeline">
                         <div class="timeline-phase">
-                            <div class="phase-title">Phase 1: Foundation Building</div>
-                            <div class="phase-text">Started with cybersecurity fundamentals, network security basics, and Python programming for security applications. Focused on understanding core concepts and terminology.</div>
+                            <div class="phase-title">Phase 1: Brainstorming</div>
+                            <div class="phase-text">Conceptualized the dropshipping intelligence platform, defined core features, researched market needs, and planned the technical architecture for real-time data analysis.</div>
                         </div>
                         <div class="timeline-phase">
-                            <div class="phase-title">Phase 2: Hands-On Practice</div>
-                            <div class="phase-text">Built practical security tools including port scanners, password analyzers, and basic vulnerability assessment scripts. Practiced in controlled lab environments.</div>
+                            <div class="phase-title">Phase 2: Writing the Code</div>
+                            <div class="phase-text">Developed the initial desktop application with core functionality including data processing algorithms, user interface components, and basic analytics features.</div>
                         </div>
                         <div class="timeline-phase">
-                            <div class="phase-title">Phase 3: Advanced Concepts</div>
-                            <div class="phase-text">Explored machine learning applications in cybersecurity, incident response procedures, and enterprise security frameworks. Studied real-world case studies and breach analyses.</div>
+                            <div class="phase-title">Phase 3: Desktop to Web Migration</div>
+                            <div class="phase-text">Transitioned from desktop application to web-based platform, redesigning architecture to support web technologies and implementing backend server infrastructure.</div>
                         </div>
                         <div class="timeline-phase">
-                            <div class="phase-title">Phase 4: Integration & Documentation</div>
-                            <div class="phase-text">Compiled learning into practical projects, created documentation, and built this portfolio to demonstrate acquired skills and knowledge to potential employers.</div>
+                            <div class="phase-title">Phase
+			     <div class="timeline-phase">
+                            <div class="phase-title">Phase 4: Writing HTML</div>
+                            <div class="phase-text">Developed responsive frontend interface using modern HTML5, CSS3, and JavaScript to create an intuitive user experience for market analysis and data visualization.</div>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-title">Phase 5: Backend Stack Development</div>
+                            <div class="phase-text">Built robust backend infrastructure with database management, server-side logic, data processing pipelines, and real-time analytics capabilities.</div>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-title">Phase 6: Connecting API</div>
+                            <div class="phase-text">Integrated multiple APIs for real-time market data, product information, pricing analytics, and third-party services to enhance platform capabilities.</div>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-title">Phase 7: Security Functions</div>
+                            <div class="phase-text">Implemented comprehensive security measures including password hashing, data encryption, secure authentication, session management, and protection against common web vulnerabilities.</div>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-title">Phase 8: Debugging</div>
+                            <div class="phase-text">Conducted thorough testing, performance optimization, bug fixes, security audits, and user acceptance testing to ensure platform reliability and security.</div>
                         </div>
                     </div>
 
                     <div class="tech-stack">
-                        <span class="tech-tag">Python Security Libraries</span>
-                        <span class="tech-tag">Network Analysis</span>
-                        <span class="tech-tag">Vulnerability Assessment</span>
-                        <span class="tech-tag">Incident Response</span>
-                        <span class="tech-tag">Risk Management</span>
-                        <span class="tech-tag">Compliance Frameworks</span>
+                        <span class="tech-tag">Full-Stack Development</span>
+                        <span class="tech-tag">Web Application</span>
+                        <span class="tech-tag">Backend Server</span>
+                        <span class="tech-tag">API Integration</span>
+                        <span class="tech-tag">Real-Time Analytics</span>
+                        <span class="tech-tag">Security Implementation</span>
+                        <span class="tech-tag">Database Management</span>
+                        <span class="tech-tag">Market Intelligence</span>
                     </div>
                     
                     <div class="project-links">
@@ -797,6 +871,8 @@
                 
                 <div class="photo-gallery">
                     <div class="photo-container">
+                        <button class="photo-nav-arrow prev">‹</button>
+                        <button class="photo-nav-arrow next">›</button>
                         <div class="photo-slide active" style="background-image: url('screenshots/project5-summer-project/Phase1a.png')"></div>
                         <div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/Phase1b.png')"></div>
                         <div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/Phase1c.png')"></div>
@@ -804,7 +880,6 @@
                         <div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/AI.png')"></div>
                         <div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/AI debugging report.png')"></div>
                         <div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/Security report.png')"></div>
-                	<div class="photo-slide" style="background-image: url('screenshots/project5-summer-project/Security report.png')"></div>
                     </div>
                     <div class="photo-navigation">
                         <div class="photo-dot active" data-slide="0"></div>
@@ -903,40 +978,136 @@
             }
         });
 
-        // Photo gallery functionality
+        // Enhanced Photo gallery functionality with swipe support
         function initializePhotoGallery() {
             const galleries = document.querySelectorAll('.photo-gallery');
             
             galleries.forEach(gallery => {
                 const slides = gallery.querySelectorAll('.photo-slide');
                 const dots = gallery.querySelectorAll('.photo-dot');
-                let currentSlide = 0;
+                const prevBtn = gallery.querySelector('.prev');
+                const nextBtn = gallery.querySelector('.next');
+                const container = gallery.querySelector('.photo-container');
                 
+                let currentSlide = 0;
+                let autoAdvanceInterval;
+                let startX = 0;
+                let isDragging = false;
+
                 // Auto-advance slides
-                const autoAdvance = setInterval(() => {
+                function startAutoAdvance() {
+                    autoAdvanceInterval = setInterval(() => {
+                        nextSlide();
+                    }, 4000);
+                }
+
+                function stopAutoAdvance() {
+                    clearInterval(autoAdvanceInterval);
+                }
+
+                function showSlide(index) {
                     slides[currentSlide].classList.remove('active');
                     dots[currentSlide].classList.remove('active');
                     
-                    currentSlide = (currentSlide + 1) % slides.length;
+                    currentSlide = index;
                     
                     slides[currentSlide].classList.add('active');
                     dots[currentSlide].classList.add('active');
-                }, 4000);
-                
-                // Manual navigation
+                }
+
+                function nextSlide() {
+                    const next = (currentSlide + 1) % slides.length;
+                    showSlide(next);
+                }
+
+                function prevSlide() {
+                    const prev = (currentSlide - 1 + slides.length) % slides.length;
+                    showSlide(prev);
+                }
+
+                // Button navigation
+                nextBtn.addEventListener('click', () => {
+                    stopAutoAdvance();
+                    nextSlide();
+                    startAutoAdvance();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    stopAutoAdvance();
+                    prevSlide();
+                    startAutoAdvance();
+                });
+
+                // Dot navigation
                 dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
-                        clearInterval(autoAdvance);
-                        
-                        slides[currentSlide].classList.remove('active');
-                        dots[currentSlide].classList.remove('active');
-                        
-                        currentSlide = index;
-                        
-                        slides[currentSlide].classList.add('active');
-                        dots[currentSlide].classList.add('active');
+                        stopAutoAdvance();
+                        showSlide(index);
+                        startAutoAdvance();
                     });
                 });
+
+                // Touch/Mouse swipe functionality
+                container.addEventListener('mousedown', handleStart);
+                container.addEventListener('touchstart', handleStart);
+                container.addEventListener('mousemove', handleMove);
+                container.addEventListener('touchmove', handleMove);
+                container.addEventListener('mouseup', handleEnd);
+                container.addEventListener('touchend', handleEnd);
+                container.addEventListener('mouseleave', handleEnd);
+
+                function handleStart(e) {
+                    isDragging = true;
+                    startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                    stopAutoAdvance();
+                }
+
+                function handleMove(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                }
+
+                function handleEnd(e) {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    
+                    const endX = e.type === 'mouseup' ? e.clientX : e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    
+                    // Minimum swipe distance
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            nextSlide();
+                        } else {
+                            prevSlide();
+                        }
+                    }
+                    
+                    startAutoAdvance();
+                }
+
+                // Keyboard navigation
+                container.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        stopAutoAdvance();
+                        prevSlide();
+                        startAutoAdvance();
+                    } else if (e.key === 'ArrowRight') {
+                        stopAutoAdvance();
+                        nextSlide();
+                        startAutoAdvance();
+                    }
+                });
+
+                // Make container focusable for keyboard navigation
+                container.setAttribute('tabindex', '0');
+
+                // Pause on hover
+                container.addEventListener('mouseenter', stopAutoAdvance);
+                container.addEventListener('mouseleave', startAutoAdvance);
+
+                // Start auto-advance
+                startAutoAdvance();
             });
         }
 
@@ -970,10 +1141,12 @@
         document.querySelectorAll('.photo-slide').forEach(slide => {
             const img = new Image();
             const bgImage = slide.style.backgroundImage.slice(5, -2);
-            img.onload = function() {
-                slide.style.opacity = '1';
-            };
-            img.src = bgImage;
+            if (bgImage) {
+                img.onload = function() {
+                    slide.style.opacity = '1';
+                };
+                img.src = bgImage;
+            }
         });
     </script>
 </body>
