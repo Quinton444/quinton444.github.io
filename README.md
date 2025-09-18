@@ -1,2 +1,1 @@
-# quinton444.github.io
-Full project Portfolio site
+This is my completed Portfolio Website showcasing the jouney and features of my current portfolio projects.
