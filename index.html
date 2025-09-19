@@ -70,10 +70,21 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #00b894 100%);
             color: white;
             position: relative;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 4s ease-in-out infinite alternate;
         }
 
         .hero-content {
@@ -506,6 +517,12 @@
         .contact-link:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+        }
+
+        /* Animation for hero background */
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.1; }
         }
 
         /* Responsive Design */
@@ -1113,6 +1130,7 @@
         // Enhanced touch/swipe support for mobile and trackpad
         let touchStartX = 0;
         let touchEndX = 0;
+        let isGestureInProgress = false;
 
         document.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
@@ -1133,21 +1151,39 @@
             }
         });
 
-        // Wheel event for trackpad gestures (horizontal scrolling)
+        // Improved wheel event for trackpad gestures with debouncing
+        let wheelTimeout;
+        let lastWheelTime = 0;
+
         document.addEventListener('wheel', function(e) {
             const activeGallery = e.target.closest('.photo-gallery');
+            const currentTime = Date.now();
             
-            if (activeGallery && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                // Horizontal scroll detected
-                e.preventDefault();
+            if (activeGallery && Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 30) {
+                // Prevent multiple rapid triggers
+                if (currentTime - lastWheelTime < 300 || isGestureInProgress) {
+                    e.preventDefault();
+                    return;
+                }
                 
-                if (e.deltaX > 10) {
+                e.preventDefault();
+                isGestureInProgress = true;
+                lastWheelTime = currentTime;
+                
+                clearTimeout(wheelTimeout);
+                
+                if (e.deltaX > 30) {
                     // Scroll right - next slide
                     activeGallery.nextSlide();
-                } else if (e.deltaX < -10) {
+                } else if (e.deltaX < -30) {
                     // Scroll left - previous slide
                     activeGallery.prevSlide();
                 }
+                
+                // Reset gesture flag after animation completes
+                wheelTimeout = setTimeout(() => {
+                    isGestureInProgress = false;
+                }, 800);
             }
         }, { passive: false });
     </script>
