@@ -604,7 +604,27 @@
     .degree-hero h2 { font-family: var(--font-display); font-size: clamp(1.7rem,3vw,2.8rem); font-weight: 700; margin-bottom: var(--sp-2); line-height: 1.05; }
     .degree-hero h2 span { color: var(--primary); }
     .degree-hero p { font-family: var(--font-body); color: var(--text-2); font-size: 0.93rem; line-height: 1.7; }
-    .degree-logo { font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--primary); opacity: 0.25; white-space: nowrap; letter-spacing: 4px; }
+    .degree-logo {
+      width: 220px; height: 260px; flex-shrink: 0;
+      border-radius: 12px; overflow: hidden;
+      border: 2px solid rgba(0,189,125,0.3);
+      box-shadow: var(--shadow-3), 0 0 32px rgba(0,189,125,0.15);
+      position: relative;
+    }
+    .degree-logo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .degree-logo:hover img { transform: scale(1.04); }
+    .degree-logo .logo-fallback {
+      display: none; /* shown via JS if img fails */
+      position: absolute; inset: 0;
+      align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 3rem;
+      font-weight: 700; color: var(--primary); opacity: 0.3;
+      letter-spacing: 4px;
+    }
 
     /* ── SKILLS — light surface, Perspective elevation ─────── */
     .skills-section { padding: var(--sp-30) 6%; background: rgba(6,8,16,0.38); color: var(--text); position: relative; z-index: 1; }
@@ -657,6 +677,9 @@
       .yt-featured { grid-template-columns: 1fr; }
       .yt-channel-info { border-left: none; border-top: 1px solid var(--border); }
     }
+    @media (max-width: 480px) {
+      .degree-logo { display: none; }
+    }
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -664,7 +687,7 @@
       .card-visual { min-height: 260px; border-left: none !important; border-right: none !important; border-top: 1px solid var(--border); }
       .cw-grid { grid-template-columns: 1fr; }
       .degree-hero { grid-template-columns: 1fr; }
-      .degree-logo { display: none; }
+      .degree-logo { width: 160px; height: 200px; }
     }
     @media (max-width: 600px) {
       .yt-grid { grid-template-columns: 1fr; }
@@ -1689,7 +1712,14 @@
             <h2>Bachelor of Business Administration<br><span>Risk Management</span></h2>
             <p style="margin-top:12px;">Cybersecurity focus · College of Business · Graduated December 2025<br>Arlington, TX &nbsp;·&nbsp; DFW Area</p>
           </div>
-          <div class="degree-logo">UTA</div>
+          <div class="degree-logo">
+            <img
+              src="graduation.jpg"
+              alt="Quinton Anding — UTA Graduation, December 2025"
+              onerror="this.style.display='none';this.parentElement.querySelector('.logo-fallback').style.display='flex';"
+            >
+            <div class="logo-fallback">UTA</div>
+          </div>
         </div>
 
         <div class="cw-grid" style="margin-top:40px;">
